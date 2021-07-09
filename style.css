@@ -12,6 +12,10 @@ header {
     height: 30vw;
     text-align: center;
 }
+
+.pixel {
+    border: 0.2px solid lightgray;
+}
 #canvas {
     width: 100%;
     height: 100%;
@@ -25,13 +29,14 @@ header {
 
 .activated {
     background-color: #3f3f3f;
+    border-color: #3f3f3f;
 }
 
 .btn {
     font-family: brandon-grotesque;
     font-weight: 500;
     font-style: normal;
-    font-size: 16px;
+    font-size: 20px;
     background: white;
     border-radius: 10%;
     padding: 10px 20px 10px 20px;

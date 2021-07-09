@@ -14,19 +14,41 @@
         <div id="canvas">
         </div>  
         <button class="btn" id="clearBtn">Clear</button>
+        <button class="btn" id="lowDensityBtn">Low</button>
+        <button class="btn" id="mediumDensityBtn">Medium</button>
+        <button class="btn" id="highDensityBtn">High</button>
     </div>
 
 
 
 
 <script>
+    const LOW = 10;
+    const MEDIUM = 20;
+    const HIGH = 30;
+
     const canvas = document.querySelector('#canvas');
     createCanvas();
 
     const clearBtn = document.querySelector('#clearBtn');
     clearBtn.addEventListener('click', clearCanvas);
 
-    function createCanvas(n = 10) {
+    const lowDensityBtn = document.querySelector('#lowDensityBtn');
+    lowDensityBtn.addEventListener('click', function() {
+        changeDensity(LOW);
+    });
+
+    const mediumDensityBtn = document.querySelector('#mediumDensityBtn');
+    mediumDensityBtn.addEventListener('click', function() {
+        changeDensity(MEDIUM);
+    });
+
+    const highDensityBtn = document.querySelector('#highDensityBtn');
+    highDensityBtn.addEventListener('click', function() {
+        changeDensity(HIGH);
+    });
+
+    function createCanvas(n = HIGH) {
         canvas.style.gridTemplateColumns = `repeat(${n}, 1fr)`;
         canvas.style.gridTemplateRows = `repeat(${n}, 1fr)`;
         for (let i = 0; i < n*n; i++) {
@@ -42,12 +64,17 @@
     }
 
     function clearCanvas() {
-        let pixels = document.querySelectorAll('.pixel');
-        pixels.forEach(x => x.classList.remove('activated'));
+        canvas.textContent = '';
     }
 
+    function changeDensity(density) {
+        let pixels = document.querySelectorAll('.pixel');
+        pixels.forEach(pixel => pixel.remove());
+        createCanvas(density);
+        
+        
 
-
+    }
 </script>
 
 </body>
