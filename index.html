@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Etch-A-Sketch</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://use.typekit.net/tfw3wfo.css">
+</head>
+<body>
+    <header>
+        <h1>Etch-a-Sketch</h1>
+    </header>
+    <div id="main">
+        <div id="canvas">
+        </div>  
+        <button class="btn" id="clearBtn">Clear</button>
+    </div>
+
+
+
+
+<script>
+    const canvas = document.querySelector('#canvas');
+    createCanvas();
+
+    const clearBtn = document.querySelector('#clearBtn');
+    clearBtn.addEventListener('click', clearCanvas);
+
+    function createCanvas(n = 10) {
+        canvas.style.gridTemplateColumns = `repeat(${n}, 1fr)`;
+        canvas.style.gridTemplateRows = `repeat(${n}, 1fr)`;
+        for (let i = 0; i < n*n; i++) {
+            let gridBox = document.createElement('div');
+            gridBox.classList.add('pixel');
+            canvas.appendChild(gridBox);
+
+            let pixels = document.querySelectorAll('.pixel');
+            pixels.forEach(pixel => pixel.addEventListener('mouseover', function() {
+                this.classList.add('activated');
+            }));
+        }
+    }
+
+    function clearCanvas() {
+        let pixels = document.querySelectorAll('.pixel');
+        pixels.forEach(x => x.classList.remove('activated'));
+    }
+
+
+
+</script>
+
+</body>
