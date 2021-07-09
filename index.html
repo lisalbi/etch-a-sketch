@@ -5,6 +5,7 @@
   <title>Etch-A-Sketch</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://use.typekit.net/tfw3wfo.css">
+  
 </head>
 <body>
     <header>
@@ -13,6 +14,11 @@
     <div id="main">
         <div id="canvas">
         </div>  
+        <div id="colorPanel">
+            <button class="color btn" id="blackColorBtn">Black</button>
+            <button class="color btn" id="pastelColorBtn">Pastel</button>
+            
+        </div>
         <div id="btnPanel">
             <button class="btn" id="clearBtn">Clear</button>
             <button class="btn" id="lowDensityBtn">Low</button>
@@ -22,10 +28,9 @@
                 <input type="range" min="10" max="30" value="20" id="densitySlider">
                 <p id="sliderCaption">Grid Size: <span id="gridSize"></span></p>
             </div>
-
         </div>
         
-
+        <input type="text" value="#ff0" />
     </div>
 
 
@@ -35,6 +40,7 @@
     const LOW = 10;
     const MEDIUM = 20;
     const HIGH = 30;
+    let color = 'pastel';
 
     const gridSize = document.querySelector('#gridSize');
 
@@ -63,9 +69,17 @@
     densitySlider.addEventListener('input', function() {
         changeDensity(this.value);
     })
-    densitySlider.oninput = function() {
-        // output.innerHTML = this.value;
-    }
+
+    const blackColorBtn = document.querySelector('#blackColorBtn');
+    blackColorBtn.addEventListener('click', function() {
+        console.log('black color button');
+        color = 'black';
+    });
+
+    const pastelColorBtn = document.querySelector('#pastelColorBtn');
+    pastelColorBtn.addEventListener('click', function() {
+        color = 'pastel';
+    });
 
     function createCanvas(n = MEDIUM) {
         canvas.style.gridTemplateColumns = `repeat(${n}, 1fr)`;
@@ -77,7 +91,7 @@
         }
         let pixels = document.querySelectorAll('.pixel');
         pixels.forEach(pixel => pixel.addEventListener('mouseover', function() {
-            this.classList.add('activated');
+            colorPixel(this);
         }));
         gridSize.textContent = `${n} x ${n}`;
         
@@ -91,6 +105,20 @@
         clearCanvas();
         createCanvas(density);
     }
+
+    function colorPixel(pixel) {
+        switch(color) {
+            case 'black':
+                pixel.style.backgroundColor = '#3f3f3f';
+                break;
+            case 'pastel':
+                let hue = Math.floor(Math.random() * 360);
+                pixel.style.backgroundColor = 'hsl(' + hue + ', 100%, 90%)';
+                break;
+        }
+    }
+
+
 </script>
 
 </body>

@@ -14,7 +14,7 @@ header {
 }
 
 .pixel {
-    border: 0.2px solid lightgray;
+    border: 0.2px solid rgba(0, 0, 0, .1);
 }
 #canvas {
     width: 100%;
