@@ -1,6 +1,16 @@
+html {
+    height: 100%;
+    
+}
 body {
+    height: 100%;
+    margin: 0;
     background: lightblue;
+    height: 100%;
     font-family: brandon-grotesque;
+    /* background: linear-gradient(35deg, #CCFFFF, #FFCCCC);
+    background-repeat: no-repeat;
+    background-attachment: fixed; */
 }
 
 header {
@@ -33,16 +43,21 @@ header {
 }
 
 .btn {
+    color: white;
     font-family: brandon-grotesque;
     font-weight: 500;
     font-style: normal;
     font-size: 20px;
-    background: white;
+    background: transparent;
     border-radius: 10%;
     padding: 10px 30px 10px 30px;
-    border: transparent;
+    border: 1px solid white;
     filter: drop-shadow(0px 2px 1px lightgray);
     margin: 10px 5px;
+}
+
+.activated {
+    background: white;
 }
 
 
@@ -58,3 +73,4 @@ header {
 #densityContainer {
     margin: 10px;
 }
+

@@ -17,15 +17,16 @@
         <div id="colorPanel">
             <button class="color btn" id="blackColorBtn">Black</button>
             <button class="color btn" id="pastelColorBtn">Pastel</button>
+            <button class="color btn" id="customColorBtn">Custom <br><input type='color' id='colorPicker'></button>
             
         </div>
         <div id="btnPanel">
             <button class="btn" id="clearBtn">Clear</button>
-            <button class="btn" id="lowDensityBtn">Low</button>
+            <!-- <button class="btn" id="lowDensityBtn">Low</button>
             <button class="btn" id="mediumDensityBtn">Medium</button>
-            <button class="btn" id="highDensityBtn">High</button>
+            <button class="btn" id="highDensityBtn">High</button> -->
             <div id="densityContainer">
-                <input type="range" min="10" max="30" value="20" id="densitySlider">
+                <input type="range" min="10" max="40" value="30" id="densitySlider">
                 <p id="sliderCaption">Grid Size: <span id="gridSize"></span></p>
             </div>
         </div>
@@ -40,7 +41,8 @@
     const LOW = 10;
     const MEDIUM = 20;
     const HIGH = 30;
-    let color = 'pastel';
+    let color = 'black';
+    let activeColorBtn = 'black'
 
     const gridSize = document.querySelector('#gridSize');
 
@@ -50,20 +52,20 @@
     const clearBtn = document.querySelector('#clearBtn');
     clearBtn.addEventListener('click', clearCanvas);
 
-    const lowDensityBtn = document.querySelector('#lowDensityBtn');
-    lowDensityBtn.addEventListener('click', function() {
-        changeDensity(LOW);
-    });
+    // const lowDensityBtn = document.querySelector('#lowDensityBtn');
+    // lowDensityBtn.addEventListener('click', function() {
+    //     changeDensity(LOW);
+    // });
 
-    const mediumDensityBtn = document.querySelector('#mediumDensityBtn');
-    mediumDensityBtn.addEventListener('click', function() {
-        changeDensity(MEDIUM);
-    });
+    // const mediumDensityBtn = document.querySelector('#mediumDensityBtn');
+    // mediumDensityBtn.addEventListener('click', function() {
+    //     changeDensity(MEDIUM);
+    // });
 
-    const highDensityBtn = document.querySelector('#highDensityBtn');
-    highDensityBtn.addEventListener('click', function() {
-        changeDensity(HIGH);
-    });
+    // const highDensityBtn = document.querySelector('#highDensityBtn');
+    // highDensityBtn.addEventListener('click', function() {
+    //     changeDensity(HIGH);
+    // });
 
     const densitySlider = document.querySelector('#densitySlider');
     densitySlider.addEventListener('input', function() {
@@ -72,7 +74,6 @@
 
     const blackColorBtn = document.querySelector('#blackColorBtn');
     blackColorBtn.addEventListener('click', function() {
-        console.log('black color button');
         color = 'black';
     });
 
@@ -80,6 +81,11 @@
     pastelColorBtn.addEventListener('click', function() {
         color = 'pastel';
     });
+
+    const colorPicker = document.querySelector('#colorPicker');
+    colorPicker.addEventListener('input', function() {
+        color = 'custom';
+    })
 
     function createCanvas(n = MEDIUM) {
         canvas.style.gridTemplateColumns = `repeat(${n}, 1fr)`;
@@ -98,11 +104,13 @@
     }
 
     function clearCanvas() {
-        canvas.textContent = '';
+        let pixels = document.querySelectorAll('.pixel');
+        pixels.forEach(pixel => pixel.style.backgroundColor = 'transparent');
     }
 
     function changeDensity(density) {
         clearCanvas();
+        canvas.textContent = '';
         createCanvas(density);
     }
 
@@ -114,6 +122,9 @@
             case 'pastel':
                 let hue = Math.floor(Math.random() * 360);
                 pixel.style.backgroundColor = 'hsl(' + hue + ', 100%, 90%)';
+                break;
+            case 'custom':
+                pixel.style.backgroundColor = colorPicker.value;
                 break;
         }
     }
