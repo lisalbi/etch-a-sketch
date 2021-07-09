@@ -39,11 +39,22 @@ header {
     font-size: 20px;
     background: white;
     border-radius: 10%;
-    padding: 10px 20px 10px 20px;
+    padding: 10px 30px 10px 30px;
     border: transparent;
     filter: drop-shadow(0px 2px 1px lightgray);
+    margin: 10px 5px;
 }
 
-#clearBtn {
-    margin: auto;
+
+
+#btnPanel {
+    text-align: center;
+}
+
+#densitySlider {
+    width: 50%;
+}
+
+#densityContainer {
+    margin: 10px;
 }

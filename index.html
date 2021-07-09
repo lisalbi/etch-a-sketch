@@ -13,10 +13,19 @@
     <div id="main">
         <div id="canvas">
         </div>  
-        <button class="btn" id="clearBtn">Clear</button>
-        <button class="btn" id="lowDensityBtn">Low</button>
-        <button class="btn" id="mediumDensityBtn">Medium</button>
-        <button class="btn" id="highDensityBtn">High</button>
+        <div id="btnPanel">
+            <button class="btn" id="clearBtn">Clear</button>
+            <button class="btn" id="lowDensityBtn">Low</button>
+            <button class="btn" id="mediumDensityBtn">Medium</button>
+            <button class="btn" id="highDensityBtn">High</button>
+            <div id="densityContainer">
+                <input type="range" min="10" max="30" value="20" id="densitySlider">
+                <p id="sliderCaption">Grid Size: <span id="gridSize"></span></p>
+            </div>
+
+        </div>
+        
+
     </div>
 
 
@@ -26,6 +35,8 @@
     const LOW = 10;
     const MEDIUM = 20;
     const HIGH = 30;
+
+    const gridSize = document.querySelector('#gridSize');
 
     const canvas = document.querySelector('#canvas');
     createCanvas();
@@ -48,19 +59,28 @@
         changeDensity(HIGH);
     });
 
-    function createCanvas(n = HIGH) {
+    const densitySlider = document.querySelector('#densitySlider');
+    densitySlider.addEventListener('input', function() {
+        changeDensity(this.value);
+    })
+    densitySlider.oninput = function() {
+        // output.innerHTML = this.value;
+    }
+
+    function createCanvas(n = MEDIUM) {
         canvas.style.gridTemplateColumns = `repeat(${n}, 1fr)`;
         canvas.style.gridTemplateRows = `repeat(${n}, 1fr)`;
         for (let i = 0; i < n*n; i++) {
             let gridBox = document.createElement('div');
             gridBox.classList.add('pixel');
             canvas.appendChild(gridBox);
-
-            let pixels = document.querySelectorAll('.pixel');
-            pixels.forEach(pixel => pixel.addEventListener('mouseover', function() {
-                this.classList.add('activated');
-            }));
         }
+        let pixels = document.querySelectorAll('.pixel');
+        pixels.forEach(pixel => pixel.addEventListener('mouseover', function() {
+            this.classList.add('activated');
+        }));
+        gridSize.textContent = `${n} x ${n}`;
+        
     }
 
     function clearCanvas() {
@@ -68,12 +88,8 @@
     }
 
     function changeDensity(density) {
-        let pixels = document.querySelectorAll('.pixel');
-        pixels.forEach(pixel => pixel.remove());
+        clearCanvas();
         createCanvas(density);
-        
-        
-
     }
 </script>
 
