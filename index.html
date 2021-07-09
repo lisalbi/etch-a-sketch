@@ -12,26 +12,25 @@
         <h1>Etch-a-Sketch</h1>
     </header>
     <div id="main">
-        <div id="canvas">
-        </div>  
-        <div id="colorPanel">
+        <div class = 'btnContainer' id="colorPanel">
             <button class="color btn" id="blackColorBtn">Black</button>
             <button class="color btn" id="pastelColorBtn">Pastel</button>
             <button class="color btn" id="customColorBtn">Custom <br><input type='color' id='colorPicker'></button>
-            
         </div>
-        <div id="btnPanel">
-            <button class="btn" id="clearBtn">Clear</button>
-            <!-- <button class="btn" id="lowDensityBtn">Low</button>
-            <button class="btn" id="mediumDensityBtn">Medium</button>
-            <button class="btn" id="highDensityBtn">High</button> -->
+        <div id='centerPanel'>
+            <div id="canvas"></div>  
             <div id="densityContainer">
                 <input type="range" min="10" max="40" value="30" id="densitySlider">
-                <p id="sliderCaption">Grid Size: <span id="gridSize"></span></p>
+                <h3 id="sliderCaption">Grid Size: <span id="gridSize"></span></h3>
             </div>
+            
+        </div>
+        <div class = 'btnContainer'>
+            <button class="btn" id="clearBtn">Clear</button>
         </div>
         
-        <input type="text" value="#ff0" />
+
+
     </div>
 
 

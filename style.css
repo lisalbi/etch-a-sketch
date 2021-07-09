@@ -5,12 +5,12 @@ html {
 body {
     height: 100%;
     margin: 0;
-    background: lightblue;
+    /* background: lightblue; */
     height: 100%;
     font-family: brandon-grotesque;
-    /* background: linear-gradient(35deg, #CCFFFF, #FFCCCC);
+    background: linear-gradient(35deg, #CCFFFF, #FFCCCC);
     background-repeat: no-repeat;
-    background-attachment: fixed; */
+    background-attachment: fixed;
 }
 
 header {
@@ -18,22 +18,26 @@ header {
 }
 #main {
     margin: auto;
-    width: 30vw;
-    height: 30vw;
     text-align: center;
+    display: flex;
+    justify-content: center;
 }
+
+
+
+
 
 .pixel {
     border: 0.2px solid rgba(0, 0, 0, .1);
 }
 #canvas {
-    width: 100%;
-    height: 100%;
+    width: 30vw;
+    height: 30vw;
     display: grid;
     border: 1px;
     background-color: white;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     border: 1px solid lightgray;
 }
 
@@ -43,34 +47,40 @@ header {
 }
 
 .btn {
-    color: white;
+    color: black;
     font-family: brandon-grotesque;
     font-weight: 500;
     font-style: normal;
     font-size: 20px;
     background: transparent;
-    border-radius: 10%;
     padding: 10px 30px 10px 30px;
-    border: 1px solid white;
+    border: 1px solid black;
     filter: drop-shadow(0px 2px 1px lightgray);
-    margin: 10px 5px;
+    margin: 10px 0;
 }
 
 .activated {
-    background: white;
+    background: black;
 }
 
 
 
-#btnPanel {
-    text-align: center;
-}
 
 #densitySlider {
-    width: 50%;
+    width: 100%;
 }
 
 #densityContainer {
-    margin: 10px;
+    margin: 20px;
 }
 
+#sliderCaption {
+    margin-top: 0;
+}
+
+.btnContainer {
+    margin-right: 30px;
+    margin-left: 30px;
+    display: flex;
+    flex-direction: column;
+}
