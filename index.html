@@ -13,9 +13,9 @@
     </header>
     <div id="main">
         <div class = 'btnContainer' id="colorPanel">
-            <button class="color btn" id="blackColorBtn">Black</button>
-            <button class="color btn" id="pastelColorBtn">Pastel</button>
-            <button class="color btn" id="customColorBtn">Custom <br><input type='color' id='colorPicker'></button>
+            <button class="color btn" id="black">Black</button>
+            <button class="color btn" id="pastel">Pastel</button>
+            <button class="color btn" id="custom">Custom <br><input type='color' id='colorPicker' value='#ff0000'></button>
         </div>
         <div id='centerPanel'>
             <div id="canvas"></div>  
@@ -27,6 +27,9 @@
         </div>
         <div class = 'btnContainer'>
             <button class="btn" id="clearBtn">Clear</button>
+            <button class="tool btn" id="penTool">Pen</button>
+            <button class="tool btn" id="eyedropperTool">Eyedropper Tool</button>
+            <button class="tool btn" id="eraserTool">Erase</button>
         </div>
         
 
@@ -40,51 +43,46 @@
     const LOW = 10;
     const MEDIUM = 20;
     const HIGH = 30;
-    let color = 'black';
-    let activeColorBtn = 'black'
+    let activeColorBtn = '';
+    let currentTool = 'penTool';
+    let currentColor = '';
+    let mousedown = false;
+    
 
     const gridSize = document.querySelector('#gridSize');
-
     const canvas = document.querySelector('#canvas');
-    createCanvas();
-
     const clearBtn = document.querySelector('#clearBtn');
-    clearBtn.addEventListener('click', clearCanvas);
-
-    // const lowDensityBtn = document.querySelector('#lowDensityBtn');
-    // lowDensityBtn.addEventListener('click', function() {
-    //     changeDensity(LOW);
-    // });
-
-    // const mediumDensityBtn = document.querySelector('#mediumDensityBtn');
-    // mediumDensityBtn.addEventListener('click', function() {
-    //     changeDensity(MEDIUM);
-    // });
-
-    // const highDensityBtn = document.querySelector('#highDensityBtn');
-    // highDensityBtn.addEventListener('click', function() {
-    //     changeDensity(HIGH);
-    // });
-
     const densitySlider = document.querySelector('#densitySlider');
+    const blackColorBtn = document.querySelector('#black');
+    const pastelColorBtn = document.querySelector('#pastel');
+    const colorPicker = document.querySelector('#colorPicker');
+    const customColorBtn = document.querySelector('#custom');
+    const penTool = document.querySelector('#penTool');
+    const eyedropperTool = document.querySelector('#eyedropperTool');
+    const eraserTool = document.querySelector('#eraserTool');
+
+    
+    
+    
+    clearBtn.addEventListener('click', clearCanvas);
     densitySlider.addEventListener('input', function() {
         changeDensity(this.value);
     })
+    blackColorBtn.addEventListener('click', () => setColor('black'));
+    pastelColorBtn.addEventListener('click', () => setColor('pastel'));
+    customColorBtn.addEventListener('click', () => setColor('custom'));
 
-    const blackColorBtn = document.querySelector('#blackColorBtn');
-    blackColorBtn.addEventListener('click', function() {
-        color = 'black';
+    penTool.addEventListener('click', () => setTool('penTool'));
+    eyedropperTool.addEventListener('click', () => setTool('eyedropperTool'));
+    eraserTool.addEventListener('click', () => setTool('eraserTool'));
+
+    document.addEventListener('mousedown', function(){
+        mousedown= true;
     });
 
-    const pastelColorBtn = document.querySelector('#pastelColorBtn');
-    pastelColorBtn.addEventListener('click', function() {
-        color = 'pastel';
+    document.addEventListener('mouseup', function(){
+        mousedown= false;
     });
-
-    const colorPicker = document.querySelector('#colorPicker');
-    colorPicker.addEventListener('input', function() {
-        color = 'custom';
-    })
 
     function createCanvas(n = MEDIUM) {
         canvas.style.gridTemplateColumns = `repeat(${n}, 1fr)`;
@@ -96,7 +94,9 @@
         }
         let pixels = document.querySelectorAll('.pixel');
         pixels.forEach(pixel => pixel.addEventListener('mouseover', function() {
-            colorPixel(this);
+            if (mousedown) {
+                transformPixel(this);
+            }
         }));
         gridSize.textContent = `${n} x ${n}`;
         
@@ -113,10 +113,18 @@
         createCanvas(density);
     }
 
+    function setColor(color) {
+        currentColor = color;
+        if (document.getElementsByClassName('activeColor')[0]) {
+            document.getElementsByClassName('activeColor')[0].classList.remove('activeColor');
+        }
+        document.getElementById(color).classList.add('activeColor');
+    }
+
     function colorPixel(pixel) {
-        switch(color) {
+        switch(currentColor) {
             case 'black':
-                pixel.style.backgroundColor = '#3f3f3f';
+                pixel.style.backgroundColor = '#262626';
                 break;
             case 'pastel':
                 let hue = Math.floor(Math.random() * 360);
@@ -127,6 +135,39 @@
                 break;
         }
     }
+
+    function transformPixel(pixel) {
+        switch (currentTool) {
+            case 'penTool':
+                colorPixel(pixel);
+                break;
+            case 'eyedropperTool':
+                if (pixel.style.backgroundColor) {
+                    colorPicker.value = pixel.style.backgroundColor;
+                }
+                break;
+            case 'eraserTool':
+                pixel.style.backgroundColor = 'transparent';
+                break;
+        }
+    }
+
+    function setTool(tool) {
+        currentTool = tool;
+        if (document.getElementsByClassName('activeTool')[0]) {
+            document.getElementsByClassName('activeTool')[0].classList.remove('activeTool');
+            console.log('good');
+        }
+        document.getElementById(tool).classList.add('activeTool');
+    }
+
+    setTool('penTool');
+    createCanvas();
+    setColor('black');
+
+
+
+
 
 
 </script>

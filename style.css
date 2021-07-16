@@ -31,6 +31,8 @@ header {
     border: 0.2px solid rgba(0, 0, 0, .1);
 }
 #canvas {
+    min-width: 300px;
+    min-height: 300px;
     width: 30vw;
     height: 30vw;
     display: grid;
@@ -41,10 +43,7 @@ header {
     border: 1px solid lightgray;
 }
 
-.activated {
-    background-color: #3f3f3f;
-    border-color: #3f3f3f;
-}
+
 
 .btn {
     color: black;
@@ -52,15 +51,28 @@ header {
     font-weight: 500;
     font-style: normal;
     font-size: 20px;
-    background: transparent;
+    background-color: lightgray;
     padding: 10px 30px 10px 30px;
     border: 1px solid black;
     filter: drop-shadow(0px 2px 1px lightgray);
     margin: 10px 0;
 }
 
-.activated {
+.btn:hover {
+    filter: brightness(105%);
+}
+
+.activeTool {
+    background-color: white;
+}
+
+.btn:hover {
+    box-shadow: 5px 5px 5px darkgray;
+  }
+
+.activeColor {
     background: black;
+    color: white;
 }
 
 
