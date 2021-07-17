@@ -1,14 +1,12 @@
 html {
-    height: 100%;
     
 }
 body {
-    height: 100%;
     margin: 0;
     /* background: lightblue; */
     height: 100%;
     font-family: brandon-grotesque;
-    background: linear-gradient(35deg, #CCFFFF, #FFCCCC);
+    background: #c0c0cc;
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
@@ -29,6 +27,7 @@ header {
 
 .pixel {
     border: 0.2px solid rgba(0, 0, 0, .1);
+    background-color: white;
 }
 #canvas {
     min-width: 300px;
@@ -43,7 +42,11 @@ header {
     border: 1px solid lightgray;
 }
 
-
+#toolPanel {
+    background-Color: lightgray;
+    height: auto;
+    padding: 8px;
+}
 
 .btn {
     color: black;
@@ -62,13 +65,31 @@ header {
     filter: brightness(105%);
 }
 
-.activeTool {
-    background-color: white;
-}
+
 
 .btn:hover {
-    box-shadow: 5px 5px 5px darkgray;
-  }
+    box-shadow: 2px 2px 2px rgb(187, 187, 187);
+}
+
+.tool {
+    color: rgb(73, 73, 73);
+    width: 70px;
+    height: 70px;
+    border: transparent;
+}
+
+.activeTool {
+    background-color: rgb(116, 116, 116);
+    color: white !important;
+}
+
+.tool i {
+    display:block;
+    text-align:center;
+    position: relative;
+    left: -4px;
+}
+
 
 .activeColor {
     background: black;

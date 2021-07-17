@@ -3,9 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <title>Etch-A-Sketch</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://use.typekit.net/tfw3wfo.css">
   
+  <link rel="stylesheet" href="https://use.typekit.net/tfw3wfo.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
@@ -23,13 +25,17 @@
                 <input type="range" min="10" max="40" value="30" id="densitySlider">
                 <h3 id="sliderCaption">Grid Size: <span id="gridSize"></span></h3>
             </div>
+            <button class="btn" id="clearBtn">Clear</button>
             
         </div>
         <div class = 'btnContainer'>
-            <button class="btn" id="clearBtn">Clear</button>
-            <button class="tool btn" id="penTool">Pen</button>
-            <button class="tool btn" id="eyedropperTool">Eyedropper Tool</button>
-            <button class="tool btn" id="eraserTool">Erase</button>
+            <div class='btnContainer' id='toolPanel'>
+                <button class="tool btn" id="penTool" ><i class="glyphicon glyphicon-pencil"></i></button>
+                <button class="tool btn" id="eyedropperTool"><i class="fa fa-eyedropper" style="font-size:20px"></i></button>
+                <button class="tool btn" id="eraserTool"><i class="glyphicon glyphicon-erase"></i></button>
+
+            </div>
+            
         </div>
         
 
@@ -114,6 +120,7 @@
     }
 
     function setColor(color) {
+        setTool('penTool');
         currentColor = color;
         if (document.getElementsByClassName('activeColor')[0]) {
             document.getElementsByClassName('activeColor')[0].classList.remove('activeColor');
@@ -142,12 +149,14 @@
                 colorPixel(pixel);
                 break;
             case 'eyedropperTool':
+                console.log('eyedropper')
+                console.log(pixel.style.backgroundColor);
                 if (pixel.style.backgroundColor) {
                     colorPicker.value = pixel.style.backgroundColor;
                 }
                 break;
             case 'eraserTool':
-                pixel.style.backgroundColor = 'transparent';
+                pixel.style.backgroundColor = 'white';
                 break;
         }
     }
