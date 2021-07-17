@@ -14,11 +14,15 @@
         <h1>Etch-a-Sketch</h1>
     </header>
     <div id="main">
-        <div class = 'btnContainer' id="colorPanel">
-            <button class="color btn" id="black">Black</button>
-            <button class="color btn" id="pastel">Pastel</button>
-            <button class="color btn" id="custom">Custom <br><input type='color' id='colorPicker' value='#ff0000'></button>
+        <div id='leftPanel'>
+            <div class = 'btnContainer' id="colorPanel">
+                <h3>Pen Color</h3>
+                <button class="color btn" id="black">Black</button>
+                <button class="color btn" id="pastel">Pastel</button>
+                <button class="color btn" id="custom">Custom <br><input type='color' id='colorPicker' value='#ff0000'></button>
+            </div>
         </div>
+        
         <div id='centerPanel'>
             <div id="canvas"></div>  
             <div id="densityContainer">
@@ -28,13 +32,12 @@
             <button class="btn" id="clearBtn">Clear</button>
             
         </div>
-        <div class = 'btnContainer'>
+        <div id='rightPanel'>
             <div class='btnContainer' id='toolPanel'>
                 <button class="tool btn" id="penTool" ><i class="glyphicon glyphicon-pencil"></i></button>
                 <button class="tool btn" id="eyedropperTool"><i class="fa fa-eyedropper" style="font-size:20px"></i></button>
                 <button class="tool btn" id="eraserTool"><i class="glyphicon glyphicon-erase"></i></button>
-
-            </div>
+        </div>
             
         </div>
         

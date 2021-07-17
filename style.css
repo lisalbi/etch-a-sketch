@@ -3,16 +3,14 @@ html {
 }
 body {
     margin: 0;
-    /* background: lightblue; */
     height: 100%;
     font-family: brandon-grotesque;
-    background: #c0c0cc;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    background: #606060;
 }
 
 header {
     text-align: center;
+    color: #eaeaea;
 }
 #main {
     margin: auto;
@@ -31,8 +29,8 @@ header {
 
 
 #canvas {
-    min-width: 300px;
-    min-height: 300px;
+    min-width: 450px;
+    min-height: 450px;
     width: 30vw;
     height: 30vw;
     display: grid;
@@ -42,34 +40,24 @@ header {
     margin-bottom: 10px;
     border: 1px solid lightgray;
 }
-
-#toolPanel {
-    background-Color: lightgray;
-    height: auto;
-    padding: 8px;
-}
-
 .btn {
     color: black;
     font-family: brandon-grotesque;
     font-weight: 500;
     font-style: normal;
-    font-size: 20px;
+    font-size: 18px;
     background-color: lightgray;
     padding: 10px 30px 10px 30px;
-    border: 1px solid black;
-    filter: drop-shadow(0px 2px 1px lightgray);
+    /* filter: drop-shadow(0px 2px 1px lightgray); */
     margin: 10px 0;
 }
 
 .btn:hover {
-    filter: brightness(105%);
+    filter: brightness(95%);
 }
 
-
-
 .btn:hover {
-    box-shadow: 2px 2px 2px rgb(187, 187, 187);
+    /* box-shadow: 2px 2px 2px rgb(187, 187, 187); */
 }
 
 .tool {
@@ -77,6 +65,10 @@ header {
     width: 70px;
     height: 70px;
     border: transparent;
+}
+
+.color {
+    border: 1px solid rgb(173, 173, 173) !important;
 }
 
 .activeTool {
@@ -93,8 +85,8 @@ header {
 
 
 .activeColor {
-    background: black;
-    color: white;
+    background-color: black;
+    color: white !important;
 }
 
 
@@ -106,15 +98,24 @@ header {
 
 #densityContainer {
     margin: 20px;
+    
 }
 
 #sliderCaption {
-    margin-top: 0;
+    margin-top: 10px;
+    color: #eaeaea;
 }
 
 .btnContainer {
-    margin-right: 30px;
-    margin-left: 30px;
+    margin: 10px 30px;
     display: flex;
     flex-direction: column;
+    border-radius: 10px;
+    background-Color: lightgray;
+    height: auto;
+    padding: 8px;
+}
+
+hr {
+    color: black;
 }
