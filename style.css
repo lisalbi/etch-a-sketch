@@ -27,8 +27,9 @@ header {
 
 .pixel {
     border: 0.2px solid rgba(0, 0, 0, .1);
-    background-color: white;
 }
+
+
 #canvas {
     min-width: 300px;
     min-height: 300px;

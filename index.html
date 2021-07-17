@@ -96,6 +96,7 @@
         for (let i = 0; i < n*n; i++) {
             let gridBox = document.createElement('div');
             gridBox.classList.add('pixel');
+            gridBox.style.backgroundColor = '#ffffff'
             canvas.appendChild(gridBox);
         }
         let pixels = document.querySelectorAll('.pixel');
@@ -104,13 +105,16 @@
                 transformPixel(this);
             }
         }));
+        pixels.forEach(pixel => pixel.addEventListener('click', function() {
+            transformPixel(this);
+        }));
         gridSize.textContent = `${n} x ${n}`;
         
     }
 
     function clearCanvas() {
         let pixels = document.querySelectorAll('.pixel');
-        pixels.forEach(pixel => pixel.style.backgroundColor = 'transparent');
+        pixels.forEach(pixel => pixel.style.backgroundColor = '#ffffff');
     }
 
     function changeDensity(density) {
@@ -149,14 +153,10 @@
                 colorPixel(pixel);
                 break;
             case 'eyedropperTool':
-                console.log('eyedropper')
-                console.log(pixel.style.backgroundColor);
-                if (pixel.style.backgroundColor) {
-                    colorPicker.value = pixel.style.backgroundColor;
-                }
+                colorPicker.value = rgbToHex(pixel.style.backgroundColor);
                 break;
             case 'eraserTool':
-                pixel.style.backgroundColor = 'white';
+                pixel.style.backgroundColor = '#ffffff';
                 break;
         }
     }
@@ -165,9 +165,28 @@
         currentTool = tool;
         if (document.getElementsByClassName('activeTool')[0]) {
             document.getElementsByClassName('activeTool')[0].classList.remove('activeTool');
-            console.log('good');
         }
         document.getElementById(tool).classList.add('activeTool');
+    }
+
+    //from @Tim Down on https://stackoverflow.com/questions/13070054/convert-rgb-strings-to-hex-in-javascript
+    function componentFromStr(numStr, percent) {
+        var num = Math.max(0, parseInt(numStr, 10));
+        return percent ?
+            Math.floor(255 * Math.min(100, num) / 100) : Math.min(255, num);
+    }
+
+    function rgbToHex(rgb) {
+        var rgbRegex = /^rgb\(\s*(-?\d+)(%?)\s*,\s*(-?\d+)(%?)\s*,\s*(-?\d+)(%?)\s*\)$/;
+        var result, r, g, b, hex = "";
+        if ( (result = rgbRegex.exec(rgb)) ) {
+            r = componentFromStr(result[1], result[2]);
+            g = componentFromStr(result[3], result[4]);
+            b = componentFromStr(result[5], result[6]);
+
+            hex = "#" + (0x1000000 + (r << 16) + (g << 8) + b).toString(16).slice(1);
+        }
+        return hex;
     }
 
     setTool('penTool');
@@ -176,9 +195,12 @@
 
 
 
-
+// combine click and hover listeners for tools?
+// error with eyedropper
 
 
 </script>
 
 </body>
+
+
