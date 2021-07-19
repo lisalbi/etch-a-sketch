@@ -5,7 +5,7 @@ body {
     margin: 0;
     height: 100%;
     font-family: brandon-grotesque;
-    background: #606060;
+    background: #474747;
 }
 
 header {
@@ -85,7 +85,7 @@ header {
 
 
 .activeColor {
-    background-color: black;
+    background-color: rgb(116, 116, 116);
     color: white !important;
 }
 
