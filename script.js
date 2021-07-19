@@ -1,6 +1,4 @@
-const LOW = 10;
-const MEDIUM = 20;
-const HIGH = 30;
+
 let activeColorBtn = '';
 let currentTool = 'penTool';
 let currentColor = '';
@@ -42,7 +40,7 @@ document.addEventListener('mouseup', function(){
     mousedown= false;
 });
 
-function createCanvas(n = MEDIUM) {
+function createCanvas(n = 30) {
     canvas.style.gridTemplateColumns = `repeat(${n}, 1fr)`;
     canvas.style.gridTemplateRows = `repeat(${n}, 1fr)`;
     for (let i = 0; i < n*n; i++) {
@@ -146,4 +144,5 @@ createCanvas();
 setColor('black');
 
 // Add keyboard listeners
+// Add function documentation
 
