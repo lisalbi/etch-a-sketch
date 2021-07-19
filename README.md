@@ -1,5 +1,5 @@
 # Pixel Art Editor
-:star2: [Click here for a Live Demo](https://lisalbi.github.io/etch-a-sketch/) :star2: <br>
+:star2: [Click here for a Live Demo](https://lisalbi.github.io/etch-a-sketch/) :star2: <br><br>
 This project began as a simple etch-a-sketch application and evolved into an online pixel art editor.It was completed using HTML, CSS, and vanilla Javascript. It is keyboard compatible.
 
 ## Features
