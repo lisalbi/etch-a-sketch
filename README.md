@@ -8,5 +8,5 @@ This project began as a simple etch-a-sketch application and evolved into an onl
 * Pen color customization: Users can choose to use the default black and pastel colors, or customize the color.
 * Ability to clear canvas
 
-## Acknowledgments
-This project is based on a prompt from [The Odin Project](https://www.theodinproject.com/paths/foundations/courses/foundations/lessons/etch-a-sketch-project).
+<br/>
+![Screenshot](/images/screenshot.png "screenshot")
